@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { useAsyncData } from '#app'
-import { deleteTodo, toggleTodo, getTodos } from '~/lib/todo.server'
+import { Todo } from '~/lib/todo.server'
 
-const { data: todos, refresh } = await useAsyncData('todos', () => getTodos())
+const { data: todos, refresh } = await useAsyncData('todos', () => Todo.list())
 
 async function handleChange (id: number) {
-  await toggleTodo(id)
+  await Todo.toggle(id)
   await refresh()
 }
 
 async function handleDelete (id: number) {
-  await deleteTodo(id)
+  await Todo.delete(id)
   await refresh()
 }
 </script>

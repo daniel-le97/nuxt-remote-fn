@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from '#imports'
-import { addTodo } from '~/lib/todo.server'
+import { Todo} from '~/lib/todo.server'
 
 const title = ref('')
 const content = ref('')
@@ -10,7 +10,7 @@ const emit = defineEmits(['create'])
 
 async function handleSubmit () {
   submitting.value = true
-  const todo = await addTodo({
+  const todo = await Todo.add({
     title: title.value,
     content: content.value
   })
